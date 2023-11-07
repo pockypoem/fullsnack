@@ -57,6 +57,21 @@ Ingat, Sequelize itu bersifat **asynchronous**. Karena asynchronous maka return 
 ## Validate User Register
 * `npm i express-validator@6.3.1`
 
+## Skenario Autentikasi
+Ada 2 cara untuk skenario autentikasi:
+* Token based authentication
+    * Autentikasi berdasarkan token dari client 
+    * Setiap request dari client, token akan disertakan di header. Pada server tinggal validasi token tersebut
+    * Jika menggunakan token based maka server tidak perlu menyimpan apapun
+    * Contoh menggunakan JWT
+    * `npm i jsonwebtoken@8.5.1`
+    * `npm i @types/jsonwebtoken -D`
+    * Perlu key untuk konfigurasi di JWT, perlu nambahin di .env `JWT_SECRET_KEY=kunci`
+* Session based authentication
+    * Session disimpan di server
+    * Ketika user login, nanti id nya akan disimpan di session. Jadi untuk request berikutnya, dia tidak perlu seperti token karena semuanya sudah diurus oleh server
+    * Sisi negative menggunakan session adalah ketika user banyak yang akses maka performa dari server berkurang 
+
 
 ## Run
 Run in 2 terminals:
