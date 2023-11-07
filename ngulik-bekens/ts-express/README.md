@@ -72,6 +72,23 @@ Ada 2 cara untuk skenario autentikasi:
     * Ketika user login, nanti id nya akan disimpan di session. Jadi untuk request berikutnya, dia tidak perlu seperti token karena semuanya sudah diurus oleh server
     * Sisi negative menggunakan session adalah ketika user banyak yang akses maka performa dari server berkurang 
 
+## Setup Todo
+
+Kegunaan `--underscored` adalah kita memperbolehkan adanya underscored, bila tidak dikasih command itu maka nanti jadinya camelCase
+
+* `./node_modules/.bin/sequelize-cli model:generate --name todo --attributes user_id:integer,description:text --underscored`
+* Perbaiki migrations
+    * Kita menambahkan foreign key ke tabel users: `references: { model: 'users', key: 'id' }`
+    * Ketika mengisi data todo, user_id wajib untuk diisi: `allowNull: false`
+* Pada file models/todo.js, kita melakukan setting untuk mereferensikan ke tabel users: <br>
+```javascript
+todo.associate = function(models) {
+    // associations can be defined here
+    todo.belongsTo(models.user);
+};
+```
+* Setelah persiapan database selesai, mari jalankan migrations nya: `./node_modules/.bin/sequelize-cli db:migrate`
+* Cek di database, seharusnya sudah nambah satu tabel
 
 ## Run
 Run in 2 terminals:
