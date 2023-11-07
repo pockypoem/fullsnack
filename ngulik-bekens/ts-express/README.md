@@ -20,11 +20,37 @@
     * `npm i helmet@3.21.2`
     * `npm i @types/helmet@0.0.45 -D`
 
+
 ## ENV
 Untuk menyimpan credential dari environment kita. Misal punya database, maka username dan password bisa ditaruh di .env
 
 * `npm i dotenv@8.2.0`
 * PORT = 3306 -> mySQL
 
+
+## Sequelize
+* `npm i sequelize@5.5.1`
+* Untuk konfigurasi library: `npm i sequelize-cli@5.5.1` 
+* Install driver untuk mysql: `npm i mysql2` 
+* Buat file: .sequelizerc
+* Untuk setup awal database: `./node_modules/.bin/sequelize-cli init`
+
+Untuk memakai sequelize perlu membuat migrations lalu model dan membuat file untuk konfigurasi database. [Dokumentasi Migrations Sequelize](https://sequelize.org/v5/manual/migrations). <br>
+
+`The .sequelizerc File` untuk memudahkan kita dalam mengatur path atau letak dari folder konfigurasi databas kita. <br>
+
+Mari membuat migrations: `./node_modules/.bin/sequelize-cli model:generate --name user --attributes username:string,password:string --underscored` <br>
+
+File `models/index.js` tidak usah dipusingkan karena itu mengumpulkan semua file-file model jadi satu index.js jadi ketika memanggil model-model hanya melalui satu file saja. <br>
+
+Setelah itu buat database nya. Kemudian jalankan migrations nya: `./node_modules/.bin/sequelize-cli db:migrate` maka akan muncul pada database kita: 
+* tabel sequelizemeta
+* tabel users
+
+Ingat, Sequelize itu bersifat **asynchronous**. Karena asynchronous maka return nya berupa Promise dengan generic Response.
+
+
 ## Run
+Run in 2 terminals:
 * `npm run ts`
+* `npm run dev`

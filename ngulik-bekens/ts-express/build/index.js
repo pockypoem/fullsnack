@@ -12,6 +12,7 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = require("dotenv");
 // Routers
 const UserRoutes_1 = __importDefault(require("./routers/UserRoutes"));
+const AuthRoutes_1 = __importDefault(require("./routers/AuthRoutes"));
 class App {
     constructor() {
         this.app = (0, express_1.default)();
@@ -32,6 +33,7 @@ class App {
             res.send("Ini adalah route menggunakan TS OOP");
         });
         this.app.use("/api/v1/users", UserRoutes_1.default);
+        this.app.use("/api/v1/auth", AuthRoutes_1.default);
     }
 }
 const PORT = 8000;
