@@ -49,6 +49,11 @@ Setelah itu buat database nya. Kemudian jalankan migrations nya: `./node_modules
 
 Ingat, Sequelize itu bersifat **asynchronous**. Karena asynchronous maka return nya berupa Promise dengan generic Response.
 
+## Encrypt Password
+* `npm i bcrypt`
+* `npm i @types/bcrypt -D`
+* `npm i @types/validator`
+
 
 ## Run
 Run in 2 terminals:
