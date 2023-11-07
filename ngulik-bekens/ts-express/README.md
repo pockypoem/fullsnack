@@ -54,6 +54,9 @@ Ingat, Sequelize itu bersifat **asynchronous**. Karena asynchronous maka return 
 * `npm i @types/bcrypt -D`
 * `npm i @types/validator`
 
+## Validate User Register
+* `npm i express-validator@6.3.1`
+
 
 ## Run
 Run in 2 terminals:
