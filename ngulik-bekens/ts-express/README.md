@@ -20,5 +20,11 @@
     * `npm i helmet@3.21.2`
     * `npm i @types/helmet@0.0.45 -D`
 
+## ENV
+Untuk menyimpan credential dari environment kita. Misal punya database, maka username dan password bisa ditaruh di .env
+
+* `npm i dotenv@8.2.0`
+* PORT = 3306 -> mySQL
+
 ## Run
 * `npm run ts`

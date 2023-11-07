@@ -12,6 +12,7 @@ let data: any[] = [
 
 class UserController implements IController {
     index(req: Request, res: Response): Response {
+        console.log("Ini adalah index users");
         return res.send(data);
     }
 

@@ -9,6 +9,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const compression_1 = __importDefault(require("compression"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = require("dotenv");
 // Routers
 const UserRoutes_1 = __importDefault(require("./routers/UserRoutes"));
 class App {
@@ -16,6 +17,7 @@ class App {
         this.app = (0, express_1.default)();
         this.plugins();
         this.routes();
+        (0, dotenv_1.config)();
     }
     plugins() {
         // Untuk melihat isi parameter dari sebuah request
@@ -36,6 +38,7 @@ const PORT = 8000;
 const app = new App().app;
 app.listen(PORT, () => {
     console.log(`Aplikasi ini berjalan di port ${PORT}`);
+    console.log(process.env.DB_USER);
 });
 // const app = express();
 // const PORT = 8000;
