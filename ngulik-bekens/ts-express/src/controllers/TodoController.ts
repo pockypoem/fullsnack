@@ -5,8 +5,18 @@ const db = require("../db/models");
 
 
 class TodoController implements IController {
-    index(req: Request, res: Response): Response {
-        return res.send("index todo");
+    index = async (req: Request, res: Response): Promise<Response> => {
+        const { id } = req.app.locals.credential;
+
+        const todos = await db.todo.findAll({
+            where: {user_id: id},
+            attributes: ['id', 'description'] // hanya tampilkan id dan description
+        });
+
+        return res.send({
+            data: todos,
+            message: ""
+        });
     }
 
     create = async (req: Request, res: Response): Promise<Response> => {
@@ -21,19 +31,54 @@ class TodoController implements IController {
         return res.send({
             data: todo,
             message: "todo created!"
-        })
+        });
     }
     
-    show(req: Request, res: Response): Response {
-        return res.send("show todo");
+    // TODO: Menampilkan satu data
+    show = async (req: Request, res: Response): Promise<Response> => {
+        const { id: user_id } = req.app.locals.credential; //rename id -> user_id
+        const { id } = req.params;
+
+        const todo = await db.todo.findOne({
+            where: {id, user_id}
+        });
+
+        return res.send({
+            data: todo,
+            message: ""
+        });
     }
 
-    update(req: Request, res: Response): Response {
-        return res.send("Update");
+    update = async (req: Request, res: Response): Promise<Response> => {
+        const { id: user_id } = req.app.locals.credential; //rename id -> user_id
+        const { id } = req.params;
+        const { description } = req.body;
+
+        await db.todo.update({
+            description
+        }, {
+            where: { id, user_id }
+        });
+
+        return res.send({
+            data: "",
+            message: "todo updated"
+        });
     }
 
-    delete(req: Request, res: Response): Response {
-        return res.send("delete");
+    delete = async (req: Request, res: Response): Promise<Response> => {
+        const { id: user_id } = req.app.locals.credential; //rename id -> user_id
+        const { id } = req.params;
+
+        await db.todo.destroy({
+            where: { id, user_id }
+        });
+
+        return res.send({
+            data: "",
+            message: "todo deleted"
+        });
+
     }
     
 }
