@@ -94,3 +94,16 @@ todo.associate = function(models) {
 Run in 2 terminals:
 * `npm run ts`
 * `npm run dev`
+
+
+## Repository Pattern
+* API Layer
+    * Routers
+    * Controllers: sebagai jembatan antara request dari client ke dalam service
+* Service Layer: Logic (apa yang akan digunakan)
+    * services
+* Repository Layer (code untuk manggil file model) --> untuk sekarang tidak pakai repository
+    * Kalau pakai repository, harusnya setelah service kemudian manggil file repository (tapi nanti terlalu panjang untuk project sederhana)
+* Data Access Layer
+    * Models
+* Database
